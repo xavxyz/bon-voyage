@@ -63,7 +63,7 @@ const Wrapper = styled.div`
 const ImageContainer = styled.div`
   height: 50vh;
   width: 100%;
-  border-radius: 4rem;
+  border-radius: 2rem;
   margin-right: -4rem;
   background: url(${props => props.image});
   background-size: cover;
