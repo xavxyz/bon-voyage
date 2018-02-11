@@ -46,7 +46,13 @@ const Container = styled.div`
       return '';
     }
 
-    const frames = animation({ disappear: outside === true, offset });
-    return `animation: ${frames} ${duration}s cubic-bezier(0.16, 0.5, 0.49, 1.05) forwards ${delay}s;`;
+    const disappear = outside === true;
+
+    const frames = animation({ disappear, offset });
+    return `
+      animation: ${frames} ${duration}s cubic-bezier(0.16, 0.5, 0.49, 1.05) forwards ${delay}s;
+      opacity: ${disappear ? 1 : 0};
+      transform: translateY(${disappear ? 0 : -offset}rem);
+    `;
   }};
 `;
