@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Appear from '../shared/Appear';
+import Title from '../shared/Title';
 
 export default class VimeoFetcher extends React.Component {
   static propTypes = {
@@ -48,16 +51,29 @@ export default class VimeoFetcher extends React.Component {
   render() {
     const { loading, error, video } = this.state;
 
-    // to replace by a smooth SVG element
-    if (loading) {
-      return 'Loading...';
-    }
-
     // the error will be catched by the error boundary
     if (error) {
       throw error;
     }
 
-    return this.props.render(video);
+    return (
+      <div>
+        <Appear inside={loading} outside={!loading} duration={0.3} offset={0.5}>
+          <Loading>
+            <Title>Loading...</Title>
+          </Loading>
+        </Appear>
+        {video && this.props.render(video)}
+      </div>
+    );
   }
 }
+
+const Loading = styled.div`
+  position: absolute;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
