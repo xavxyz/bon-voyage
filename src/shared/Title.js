@@ -26,10 +26,11 @@ class Title extends React.Component {
 }
 
 export const Heading = styled.div`
-  font-size: 10vw;
+  font-size: 8vw;
   font-weight: 800;
+  text-transform: lowercase;
   letter-spacing: -0.35vw;
-  line-height: 1.1;
+  line-height: 1;
   margin-bottom: 2rem;
 `;
 
