@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <div>
-    <div>The scene takes place in cosmos for now:</div>
-    <pre>yarn cosmos</pre>
-  </div>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
   document.getElementById('root')
 );
