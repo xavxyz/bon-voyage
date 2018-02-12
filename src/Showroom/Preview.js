@@ -45,19 +45,12 @@ export default class Preview extends React.Component {
   }
 
   handleShowVideo = () => {
-    console.log('yoyo');
-    this.setState(
-      state => ({
-        showVideo: !state.showVideo,
-      }),
-      () => {
-        console.log('done updating state');
-      }
-    );
+    this.setState(state => ({
+      showVideo: !state.showVideo,
+    }));
   };
 
   handleClickOutside = event => {
-    console.log(this.container.contains(event.target));
     if (
       this.state.showVideo &&
       this.container &&
@@ -68,7 +61,7 @@ export default class Preview extends React.Component {
   };
 
   render() {
-    const { pictures: { sizes: thumbnails } } = this.props;
+    const { uri, pictures: { sizes: thumbnails } } = this.props;
     const { link: image } = thumbnails[thumbnails.length - 1];
 
     const { showVideo, axes } = this.state;
@@ -102,6 +95,17 @@ export default class Preview extends React.Component {
                 showVideo={showVideo}
                 onClick={this.handleShowVideo}
               />
+              {showVideo && (
+                <Iframe
+                  src={`https://player.vimeo.com/video/${uri.substr(
+                    8
+                  )}?badge=0&autoplay=1`}
+                  frameborder="0"
+                  webkitallowfullscreen
+                  mozallowfullscreen
+                  allowfullscreen
+                />
+              )}
             </VideoContainer>
           )}
         </Motion>
@@ -139,9 +143,24 @@ const VideoContainer = styled.div`
   justify-content: center;
   align-items: center;
 
+  position: relative;
+  overflow: hidden;
+
   @media (max-width: 768px) {
     height: 28.12vh;
     width: 50vh;
     background-position: center top;
   }
+`;
+
+const Iframe = styled.iframe`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
 `;
