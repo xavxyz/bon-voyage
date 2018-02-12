@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Motion, spring } from 'react-motion';
+import VideoTrigger from './VideoTrigger';
 
 export default class Preview extends React.Component {
   static propTypes = {
@@ -35,16 +36,35 @@ export default class Preview extends React.Component {
 
   componentDidMount() {
     this.mediaQuery.addListener(this.updateStyles);
+    document.addEventListener('mousedown', this.handleClickOutside);
   }
 
   componentWillUnmount() {
     this.mediaQuery.removeListener(this.updateStyles);
+    document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
   handleShowVideo = () => {
-    this.setState(state => ({
-      showVideo: !state.showVideo,
-    }));
+    console.log('yoyo');
+    this.setState(
+      state => ({
+        showVideo: !state.showVideo,
+      }),
+      () => {
+        console.log('done updating state');
+      }
+    );
+  };
+
+  handleClickOutside = event => {
+    console.log(this.container.contains(event.target));
+    if (
+      this.state.showVideo &&
+      this.container &&
+      !this.container.contains(event.target)
+    ) {
+      this.handleShowVideo();
+    }
   };
 
   render() {
@@ -55,7 +75,7 @@ export default class Preview extends React.Component {
     const { direction } = this.motionPresets[axes.main];
 
     return (
-      <Wrapper onClick={this.handleShowVideo}>
+      <Wrapper>
         <Motion
           defaultStyle={{
             [axes.main]: direction * 100,
@@ -70,13 +90,19 @@ export default class Preview extends React.Component {
         >
           {style => (
             <VideoContainer
+              innerRef={node => (this.container = node)}
               image={image}
               style={{
                 transform: `scale(${style.scale}) translate(${style.x}vw,${
                   style.y
                 }vh)`,
               }}
-            />
+            >
+              <VideoTrigger
+                showVideo={showVideo}
+                onClick={this.handleShowVideo}
+              />
+            </VideoContainer>
           )}
         </Motion>
       </Wrapper>
@@ -88,7 +114,7 @@ export default class Preview extends React.Component {
 const getAxes = matches =>
   matches ? { main: 'y', opposite: 'x' } : { main: 'x', opposite: 'y' };
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
@@ -108,6 +134,10 @@ const VideoContainer = styled.div`
   background: url(${props => props.image});
   background-size: cover;
   background-position: right center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: 768px) {
     height: 28.12vh;
