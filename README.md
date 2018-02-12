@@ -1,3 +1,5 @@
+![CI Build](https://travis-ci.org/xavcz/bon-voyage.svg?branch=master)
+
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Bon Voyage 📽
