@@ -1,9 +1,16 @@
 import App from './App';
-import { withRouter } from 'react-router-dom';
 
-export default {
-  name: 'showroom',
-  component: withRouter(App),
-  url: '/155417031',
-  route: '/:videoId',
-};
+export default [
+  {
+    name: 'showroom',
+    component: App,
+    url: '/155417031',
+    route: '/:videoId',
+  },
+  {
+    name: 'welcome',
+    component: App,
+    url: '/',
+    route: '/',
+  },
+];
