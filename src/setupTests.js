@@ -12,3 +12,12 @@ console.error = err => {
 console.warn = warning => {
   throw new Error(warning);
 };
+
+// window.matchMedia is not defined in node, even with the jsdom environment
+window.matchMedia = function() {
+  return {
+    matches: jest.fn(),
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+  };
+};

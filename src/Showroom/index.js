@@ -37,6 +37,7 @@ export default class Showroom extends React.Component {
 const Wrapper = styled.div`
   display: flex;
   height: 100vh;
+  overflow: hidden;
 
   @media (max-width: 768px) {
     flex-direction: column-reverse;
