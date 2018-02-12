@@ -16,10 +16,10 @@ export default class Information extends React.Component {
 
     return (
       <Wrapper>
-        <Appear inside offset={-20} duration={0.5} delay={0.3}>
+        <Appear inside offset={3} duration={0.5} delay={0.3}>
           <Title>{name}</Title>
         </Appear>
-        <Appear inside offset={-10} duration={0.5} delay={0.4}>
+        <Appear inside offset={3} duration={0.5} delay={0.4}>
           <Text content={description} />
         </Appear>
       </Wrapper>
