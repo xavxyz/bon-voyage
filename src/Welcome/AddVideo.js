@@ -48,13 +48,21 @@ class AddVideo extends React.Component {
 
 const FormWrapper = styled.form`
   display: flex;
+  max-width: 1000px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    flex-direction: column;
+    width: 80vw;
+  }
 `;
 
 export const Input = styled.input`
   background: rgba(255, 255, 255, 0.5);
   border-radius: 0.5rem;
   align-self: stretch;
-  min-width: 500px;
+
   border: 0;
   outline: 0;
   padding: 0 0.5rem;
@@ -63,6 +71,17 @@ export const Input = styled.input`
   font-family: Montserrat, sans-serif;
   letter-spacing: 0.1rem;
   color: rgba(255, 255, 255, 0.9);
+
+  @media (min-width: 769px) {
+    min-width: 500px;
+  }
+
+  @media (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 0.5rem;
+  }
 `;
 
 export default withRouter(AddVideo);

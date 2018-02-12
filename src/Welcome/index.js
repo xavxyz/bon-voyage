@@ -18,9 +18,7 @@ export default class Welcome extends React.Component {
           </Appear>
         </Header>
         <Appear inside offset={-1} duration={0.3} delay={0.3}>
-          <WidthContainer>
-            <AddVideo />
-          </WidthContainer>
+          <AddVideo />
         </Appear>
       </Wrapper>
     );
@@ -41,8 +39,5 @@ const Header = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const WidthContainer = styled.div`
-  max-width: 1000px;
+  text-align: center;
 `;
