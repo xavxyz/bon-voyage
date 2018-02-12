@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Motion, spring } from 'react-motion';
-import VideoTrigger from './VideoTrigger';
+import PlayButton from '../shared/PlayButton';
 
 export default class Preview extends React.Component {
   static propTypes = {
@@ -98,7 +98,7 @@ export default class Preview extends React.Component {
                 }vh)`,
               }}
             >
-              <VideoTrigger
+              <PlayButton
                 showVideo={showVideo}
                 onClick={this.handleShowVideo}
               />

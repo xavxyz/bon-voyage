@@ -2,34 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default class VideoTrigger extends React.Component {
+export default class PlayButton extends React.Component {
   static propTypes = {
-    showVideo: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
+    hidden: PropTypes.bool,
   };
 
   render() {
-    const { showVideo, onClick } = this.props;
+    const { hidden, onClick } = this.props;
 
     return (
-      <PlayButton
+      <Button
         style={{
-          opacity: Number(!showVideo),
-          cursor: showVideo ? 'default' : 'pointer',
+          opacity: Number(!hidden),
+          cursor: hidden ? 'default' : 'pointer',
         }}
-        onClick={showVideo ? undefined : onClick}
+        onClick={hidden ? undefined : onClick}
       >
         <SvgPositioner>
           <Svg viewBox="0 0 20 20" preserveAspectRatio="xMidYMid" tabindex="-1">
             <polygon points="1,0 20,10 1,20" fill="#fff" />
           </Svg>
         </SvgPositioner>
-      </PlayButton>
+      </Button>
     );
   }
 }
 
-export const PlayButton = styled.button`
+export const Button = styled.button`
   background: rgba(35, 35, 35, 0.75);
   border-radius: 0.5rem;
   width: 5rem;
