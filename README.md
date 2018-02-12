@@ -1,4 +1,4 @@
-![CI Build](https://travis-ci.org/xavcz/bon-voyage.svg?branch=master)
+[![CI Build](https://travis-ci.org/xavcz/bon-voyage.svg?branch=master)](https://travis-ci.org/xavcz/bon-voyage)
 
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
