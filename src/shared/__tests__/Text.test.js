@@ -1,6 +1,8 @@
 import createTestContext from 'react-cosmos-test/enzyme';
-import fixture from '../__fixtures__/Text.fixture';
+import fixtures from '../__fixtures__/Text.fixture';
 import { Line } from '../Text';
+
+const [fixture] = fixtures;
 
 const { mount, get, getWrapper } = createTestContext({ fixture });
 

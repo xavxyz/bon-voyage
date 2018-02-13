@@ -7,6 +7,18 @@ import Welcome from './Welcome';
 import Text from './shared/Text';
 
 export default class App extends React.Component {
+  state = {
+    error: null,
+    hasError: false,
+  };
+
+  componentDidCatch(error) {
+    this.setState({
+      error,
+      hasError: true,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -16,13 +28,17 @@ export default class App extends React.Component {
           path="/:videoId"
           render={({ match }) => (
             <VimeoFetcher
+              hasError={this.state.hasError}
               videoId={match.params.videoId}
               render={video => <Showroom video={video} />}
             />
           )}
         />
         <FixedFooter>
-          <Text content="Made with ♥️ by Xavier Cazalot" />
+          <Text
+            content={this.state.error || 'Made with ♥️ by Xavier Cazalot'}
+            hasError={this.state.hasError}
+          />
         </FixedFooter>
       </div>
     );

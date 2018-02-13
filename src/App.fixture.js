@@ -1,15 +1,23 @@
+import React from 'react';
 import App from './App';
+import { withRouter } from 'react-router-dom';
+
+const AppWithRouter = props => {
+  const Component = withRouter(App);
+
+  return <Component {...props} />;
+};
 
 export default [
   {
     name: 'showroom',
-    component: App,
+    component: AppWithRouter,
     url: '/155417031',
     route: '/:videoId',
   },
   {
     name: 'welcome',
-    component: App,
+    component: AppWithRouter,
     url: '/',
     route: '/',
   },

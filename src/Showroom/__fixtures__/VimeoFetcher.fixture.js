@@ -23,6 +23,15 @@ export default [
     },
   },
   {
+    name: 'error caught from parent',
+    component: VimeoFetcher,
+    props: {
+      videoId: 'invalid-id',
+      render: () => 'I shall not appear',
+      hasError: true,
+    },
+  },
+  {
     name: 'real response - success',
     component: VimeoFetcher,
     props: {

@@ -9,6 +9,7 @@ export default class VimeoFetcher extends React.Component {
     videoId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
       .isRequired,
     render: PropTypes.func.isRequired,
+    hasError: PropTypes.bool,
   };
 
   state = {
@@ -18,7 +19,7 @@ export default class VimeoFetcher extends React.Component {
   };
 
   async componentDidMount() {
-    if (!this.state.video) {
+    if (!this.state.video && !this.props.hasError) {
       try {
         const response = await fetch(
           `https://api.vimeo.com/videos/${this.props.videoId}`,
