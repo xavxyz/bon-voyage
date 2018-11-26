@@ -1,10 +1,50 @@
 // @flow
 import * as React from 'react';
+import getConfig from 'next/config';
+import 'isomorphic-unfetch';
 import { createGlobalStyle } from 'styled-components';
 
-export default class Page extends React.Component<{}> {
+type Video = {
+  link: string,
+  name: string,
+  year: string,
+  colors: [string, string],
+};
+
+type Props = {
+  videos: Array<Video>,
+};
+
+export default class Page extends React.Component<Props> {
+  static async getInitialProps() {
+    try {
+      const { serverRuntimeConfig } = getConfig();
+
+      const response = await fetch(
+        `https://api.vimeo.com/users/898734/albums/3486258/videos?fields=link,name,created_time,description&sort=date&direction=desc`,
+        {
+          headers: {
+            // $FlowFixMe
+            Authorization: `Bearer ${serverRuntimeConfig.VIMEO_TOKEN}`,
+          },
+        }
+      );
+
+      const { data } = await response.json();
+
+      return {
+        videos: data.map(({ created_time, ...video }) => ({
+          ...video,
+          year: new Date(created_time).getFullYear(),
+        })),
+      };
+    } catch (error) {
+      return { videos: [] };
+    }
+  }
+
   render() {
-    return 'Bon Voyage!';
+    return <pre>{this.props.videos}</pre>;
   }
 }
 
