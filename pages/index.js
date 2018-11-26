@@ -2,7 +2,18 @@
 import * as React from 'react';
 import getConfig from 'next/config';
 import 'isomorphic-unfetch';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+import Head from '../components/Head';
+import Main from '../components/Main';
+import AssetPrefetch from '../components/AssetPrefetch';
+import Hero from '../components/Hero';
+import Meta from '../components/Meta';
+import Title from '../components/Title';
+import Anchor from '../components/Anchor';
+import Space from '../components/Space';
+import ColorEnhancer from '../components/ColorEnhancer';
+import ColorSubject from '../components/ColorSubject';
 
 type Video = {
   link: string,
@@ -44,7 +55,72 @@ export default class Page extends React.Component<Props> {
   }
 
   render() {
-    return <pre>{this.props.videos}</pre>;
+    return (
+      <Main>
+        <Head />
+        <GlobalStyles />
+        <AssetPrefetch src="static/cursor-pointer-clicked.png" />
+        <Hero />
+        <Space size={2} />
+        <ColorEnhancer>
+          <Meta>My adventures, over the years, over the world;</Meta>
+          <Meta>Bon Voyage, ou l'aventure douce.</Meta>
+          <Space />
+          <Meta>
+            —{' '}
+            <ColorSubject>
+              <Anchor
+                href="https://twitter.com/xavczen"
+                target="_blank"
+                rel="noreferrer"
+                decorationDisabled
+              >
+                @xavczen
+              </Anchor>
+            </ColorSubject>
+          </Meta>
+        </ColorEnhancer>
+        <Space size={6} />
+        {this.props.videos.length === 0 && (
+          <section>
+            <Meta>oops</Meta>
+            <Space />
+            <Title>
+              We couldn't retrieve the video stories from the interweb.
+            </Title>
+          </section>
+        )}
+        {this.props.videos.map((video, index, list) => (
+          <React.Fragment key={video.link}>
+            <ColorEnhancer>
+              <Meta>
+                <ColorSubject>{video.year}</ColorSubject>
+              </Meta>
+              <Space />
+              <Title>
+                <Anchor href={video.link} target="_blank" rel="noreferrer">
+                  {video.name}
+                </Anchor>
+              </Title>
+            </ColorEnhancer>
+            {index !== list.length - 1 && <Space size={3} />}
+          </React.Fragment>
+        ))}
+        <Space size={6} />
+        <ColorEnhancer>
+          <Meta>
+            Wanderer, <ColorSubject>your footsteps are the road</ColorSubject>,
+            and nothing more;
+          </Meta>
+          <Meta>
+            wanderer, there is no road,{' '}
+            <ColorSubject>the road is made by walking</ColorSubject>.
+          </Meta>
+          <Space />
+          <Meta>— Antonio Machado</Meta>
+        </ColorEnhancer>
+      </Main>
+    );
   }
 }
 
