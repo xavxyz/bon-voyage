@@ -69,4 +69,16 @@ const GlobalStyles = createGlobalStyle`
     background: #000;
     font-family: Apercu, Helvetica, sans-serif;
   }
+
+  g, path {
+    transform-origin: 240px 244px;
+  }
+
+  @keyframes scale {
+    to { transform: scale(1, 1); }
+  }
+
+  @keyframes draw {
+    to { stroke-dashoffset: 0 };
+  }
 `;
