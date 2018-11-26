@@ -1,0 +1,5 @@
+.next
+node_modules
+.env
+bon-voyage
+.yarn-error.log
