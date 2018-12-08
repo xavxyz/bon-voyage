@@ -14,12 +14,13 @@ import Anchor from '../components/Anchor';
 import Space from '../components/Space';
 import ColorEnhancer from '../components/ColorEnhancer';
 import ColorSubject from '../components/ColorSubject';
+import HoverFader from '../components/HoverFader';
 
 type Video = {
   link: string,
   name: string,
   year: string,
-  colors: [string, string],
+  description: string,
 };
 
 type Props = {
@@ -92,9 +93,9 @@ export default class Page extends React.Component<Props> {
         )}
         {this.props.videos.map((video, index, list) => (
           <React.Fragment key={video.link}>
-            <ColorEnhancer>
+            <HoverFader>
               <Meta>
-                <ColorSubject>{video.year}</ColorSubject>
+                {video.year} — {video.description}
               </Meta>
               <Space />
               <Title>
@@ -102,7 +103,8 @@ export default class Page extends React.Component<Props> {
                   {video.name}
                 </Anchor>
               </Title>
-            </ColorEnhancer>
+              <Space size={1.5} />
+            </HoverFader>
             {index !== list.length - 1 && <Space size={3} />}
           </React.Fragment>
         ))}
