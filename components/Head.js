@@ -11,6 +11,10 @@ export default function Head() {
   return (
     <NextHead>
       <title>Bon Voyage — by Xavier Cazalot</title>
+      <meta
+        name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0"
+      />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@xavczen" />
       <meta name="twitter:title" content="Bon Voyage - by Xavier Cazalot" />
