@@ -71,12 +71,12 @@ export default class Page extends React.Component<Props> {
             —{' '}
             <ColorSubject>
               <Anchor
-                href="https://twitter.com/xavczen"
+                href="https://twitter.com/xavxyz"
                 target="_blank"
                 rel="noreferrer"
                 decorationDisabled
               >
-                @xavczen
+                @xavxyz
               </Anchor>
             </ColorSubject>
           </Meta>
